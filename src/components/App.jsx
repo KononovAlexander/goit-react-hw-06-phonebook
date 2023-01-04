@@ -1,8 +1,11 @@
-import  {useState, useEffect} from 'react';
+// import  {useState, useEffect} from 'react';
 import {Box} from './Box'
 import { Form } from './Form/Form';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
+// import { useDispatch, useSelector } from "react-redux";
+// import { getContacts } from "redux/selectors";
+// import { addContact} from "redux/actions";
 import styled from 'styled-components';
 
 const Title = styled.h2`
@@ -10,19 +13,16 @@ font-size:36px;
 `;
 
  export  const App = () => { 
+  // const dispatch = useDispatch();
+  // const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('contacts')) ?? '');
+  // const [filter, setFilter] = useState('');
+  // const contacts = useSelector(getContacts);
 
-  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('contacts')) ?? '');
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts))
-  },[contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts))
+  // },[contacts]);
 
     
-   const  addContact = data => {
-      const isExist = contacts.find(contact => contact.name === data.name);
-      isExist ? alert(`${data.name} is allready in contacts`) : setContacts([...contacts, data]);
-    }
 
       return (
         <div
@@ -38,18 +38,21 @@ font-size:36px;
         >
           <div>
             <Title>Phonebook</Title>
-          <Form onSubmit={addContact}/>
+          <Form />
 
           </div>
           <Box width={400}>
           <Title>Contacts</Title>
                 
-                <Filter value={filter} 
-                    onChange={event => setFilter(event.currentTarget.value)}  
-                    filter={filter} 
-                    contacts={contacts} />
+                <Filter 
+                  // value={filter} 
+                    // onChange={event => setFilter(event.currentTarget.value)}  
+                    // filter={filter} 
+                    // contacts={contacts} 
+                    />
                   <Contacts 
-              deleteContact={id => setContacts(contacts.filter(contact => contact.id !== id))}/>
+              // deleteContact={id => dispatch(addContact(contacts.filter(contact => contact.id !== id)))}
+              />
           </Box>
         </div>
       );
